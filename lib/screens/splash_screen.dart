@@ -1,6 +1,7 @@
 import 'package:arm_chat/screens/auth_screen.dart';
 import 'package:arm_chat/screens/chat_screen.dart';
 import 'package:arm_chat/services/auth_service.dart';
+import 'package:arm_chat/services/push_notification_service.dart';
 import 'package:arm_chat/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _prepareAppStates() async {
     //perform start up logic
+    PushNotification().initialize();
     final FirebaseUser user =
         await context.read<AuthenticationService>().getCurrentUserAsync();
     if (user == null) {

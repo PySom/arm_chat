@@ -78,3 +78,6 @@ const kAppBarActionPadding = EdgeInsets.only(right: 20);
 const kBoxRadius = BorderRadius.all(
   Radius.circular(10),
 );
+
+const String kServerKey =
+    'AAAAxxXOOiw:APA91bED9UZlyPP16jgulsS7nk9wcCJClN34gmff27qpNfPWrmp8vr-tUPVb9iyZkdC3TJmHfwKSJpdLHMf9Lx6YD1GMTm7Vb0-2K26zE0o7CBjHHLGqb5Wo8LMmw1AS1AKjEhae4Mr0';

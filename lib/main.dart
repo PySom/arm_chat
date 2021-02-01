@@ -1,6 +1,7 @@
 import 'package:arm_chat/providers/provider_list.dart';
 import 'package:arm_chat/screens/auth_screen.dart';
 import 'package:arm_chat/screens/splash_screen.dart';
+import 'package:arm_chat/services/analytics_service.dart';
 import 'package:arm_chat/utils/app_routes.dart';
 import 'package:arm_chat/utils/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: appProviders,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        navigatorObservers: [
+          FirebaseAnalyticsService.analyticsObserver,
+        ],
         title: 'CrowdExpress',
         theme: myThemeData(context),
         initialRoute: SplashScreen.id,

@@ -2,8 +2,8 @@ import 'package:arm_chat/screens/chat_screen.dart';
 import 'package:arm_chat/services/auth_service.dart';
 import 'package:arm_chat/utils/constants.dart';
 import 'package:arm_chat/widgets/alt_auth_action.dart';
+import 'package:arm_chat/widgets/external_login.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login/flutter_login.dart';
 import 'package:provider/provider.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -16,6 +16,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   bool _isLogin = true;
   bool _isBusy = false;
+  bool _isGoogleBusy = false;
   TextEditingController _emailController;
   TextEditingController _passwordController;
   @override
@@ -32,7 +33,25 @@ class _AuthScreenState extends State<AuthScreen> {
     super.dispose();
   }
 
+  Future<void> _onGoogleSignIn(BuildContext context) async {
+    setState(() {
+      _isGoogleBusy = true;
+    });
+    try {
+      await context.read<AuthenticationService>().signInWithGoogleAsync();
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(ChatScreen.id, (_) => false);
+    } catch (error) {
+      print(error.message);
+      _showSnack(context, error.message);
+    }
+    setState(() {
+      _isGoogleBusy = false;
+    });
+  }
+
   Future<String> _authAction(BuildContext context, bool isLogin) async {
+    FocusManager.instance.primaryFocus.unfocus();
     String message;
     bool result = false;
     if ((_emailController.text?.isEmpty ?? false) ||
@@ -168,6 +187,11 @@ class _AuthScreenState extends State<AuthScreen> {
                           });
                         },
                       ),
+                    ),
+                    ExternalLogin(
+                      onGoogleSignIn: () async =>
+                          await _onGoogleSignIn(context),
+                      isGoogleBusy: _isGoogleBusy,
                     ),
                   ],
                 ),
