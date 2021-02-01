@@ -15,9 +15,9 @@ const String kHeroLocationTag = 'locationTag';
 
 //colors
 const Color kWhiteColor = Colors.white;
-const Color kPrimaryColor = Color(0xFF13184D);
+const Color kPrimaryColor = Color(0xFF602144);
 const Color kTextButtonColor = Color(0xFF1D2256);
-const Color kAccentColor = Color(0xFFFFB600);
+const Color kAccentColor = Color(0xFFEEE7E2);
 const Color kInputBorderColor = Color(0xFFD6D8DE);
 const Color kGreenColor = Color(0xFF00C488);
 const Color kPickupColor = Color(0xFF00D090);

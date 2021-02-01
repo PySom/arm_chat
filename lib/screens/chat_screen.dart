@@ -19,6 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
   ChatModel _chatModel;
   FirebaseUser _user;
   TextEditingController _chatController;
+  ScrollController _scrollController;
 
   @override
   initState() {
@@ -31,6 +32,7 @@ class _ChatScreenState extends State<ChatScreen> {
       });
     });
     _chatController = TextEditingController();
+    _scrollController = ScrollController();
     super.initState();
   }
 
@@ -54,10 +56,6 @@ class _ChatScreenState extends State<ChatScreen> {
               backgroundColor: kPrimaryColor,
               title: Text('Group Chat'),
               actions: [
-                IconButton(
-                  icon: Icon(Icons.analytics),
-                  onPressed: () {},
-                ),
                 PopupMenuButton<String>(
                   onSelected: (_) async => _onLogout(),
                   itemBuilder: (BuildContext context) {
@@ -80,6 +78,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: ChatStream(
                     chatStreams: _chatModel.availableChats(),
                     currentUser: _user,
+                    controller: _scrollController,
                   ),
                 ),
                 _buildInput(),
@@ -131,6 +130,11 @@ class _ChatScreenState extends State<ChatScreen> {
                 _chatModel.addChat(_user.email, _chatController.text);
                 _chatController.clear();
                 FocusManager.instance.primaryFocus.unfocus();
+                _scrollController.animateTo(
+                  0.0,
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.ease,
+                );
               }
             },
           ),
@@ -143,7 +147,12 @@ class _ChatScreenState extends State<ChatScreen> {
 class ChatStream extends StatelessWidget {
   final Stream<QuerySnapshot> chatStreams;
   final FirebaseUser currentUser;
-  ChatStream({this.chatStreams, this.currentUser});
+  final ScrollController controller;
+  ChatStream({
+    this.chatStreams,
+    this.currentUser,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -180,10 +189,12 @@ class ChatStream extends StatelessWidget {
           }
           chats.sort((a, b) => b.date.compareTo(a.date));
           return ListView.builder(
+            controller: controller,
             padding: kAppPadding.copyWith(bottom: 0),
             physics: BouncingScrollPhysics(),
             itemCount: chats.length,
             reverse: true,
+            shrinkWrap: true,
             itemBuilder: (context, index) {
               return ChatDetail(
                 chat: chats[index],

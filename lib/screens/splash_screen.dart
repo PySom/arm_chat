@@ -40,7 +40,14 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: Center(
-        child: Text('Splash screen'),
+        child: Text(
+          'A R M',
+          style: kDefaultFontStyle.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 35,
+          ),
+        ),
       ),
     );
   }

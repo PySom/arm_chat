@@ -34,37 +34,4 @@ class ChatModel {
   Stream<QuerySnapshot> availableChats() {
     return _fs.collection('messages').snapshots();
   }
-
-  static List<ChatModel> list = [
-    ChatModel(
-      senderId: "1",
-      message: "Hi Marti! do you have already reports?",
-      date: DateTime.now().subtract(Duration(days: 4)),
-    ),
-    ChatModel(
-      senderId: "1",
-      message: "Sure we can talk tomorrow",
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    ChatModel(
-      senderId: "1",
-      message: "Hi Marti",
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    ChatModel(
-      senderId: "2",
-      message: "I'd like to discuss about reports for kate",
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-    ChatModel(
-      senderId: "2",
-      message: "Are you available tomorrow at 3PM?",
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    ChatModel(
-      senderId: "2",
-      message: "Hi jonathan",
-      date: DateTime.now().subtract(Duration(days: 1)),
-    ),
-  ];
 }

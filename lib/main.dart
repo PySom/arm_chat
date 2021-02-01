@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         navigatorObservers: [
           FirebaseAnalyticsService.analyticsObserver,
         ],
-        title: 'CrowdExpress',
+        title: 'ARM Chat',
         theme: myThemeData(context),
         initialRoute: SplashScreen.id,
         routes: appRoutes,

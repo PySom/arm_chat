@@ -36,8 +36,8 @@ ThemeData myThemeData(BuildContext context) {
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(kTextButtonStyle),
-        backgroundColor: MaterialStateProperty.all(kAccentColor),
-        foregroundColor: MaterialStateProperty.all(kTextButtonColor),
+        backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+        foregroundColor: MaterialStateProperty.all(Colors.white),
         minimumSize: MaterialStateProperty.all(kTextButtonSize),
         padding: MaterialStateProperty.all(kButtonPadding),
         shape: MaterialStateProperty.all(
