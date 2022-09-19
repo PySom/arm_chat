@@ -2,16 +2,20 @@
 
 ARM Chat Application
 
-## Getting Started
+## Questions
 
-This project is a starting point for a Flutter application.
+1. How long did you spend on the challenge
+- I spent roughly 8 hours on the task. I had aleady built this earlier and what I had to do was to make sure the application built and allowed multiple users chat at the same time
 
-A few resources to get you started if this is your first Flutter project:
+2. If I had more time, I would have added the following
+- Unit tests for some critical functions
+- Used the BLoC architecture
+- Quote replying a message
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# arm_chat" 
+3. How will I track down performance issue
+- Good thing with the app is that there is an analytic integration.
+    - I will use the output from the analytics for that screen where the bug is detected to identify the problem
+    
+4. Suggestions to the firebase team.
+- I will suggest having a consistent API accross different upgrades such that only their internal API changes
+- Implement technology like App insight where you don't have to plug analytics into your app but get diagnostics
