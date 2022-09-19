@@ -9,7 +9,6 @@ class PushNotification {
 
   void initialize() {
     _fbm.subscribeToTopic('all');
-    print('subcribed');
     if (Platform.isIOS) {
       //require IOS permission
       _fbm.requestNotificationPermissions(IosNotificationSettings());
@@ -27,9 +26,8 @@ class PushNotification {
   }
 
   Future<void> sendMessage(String title, String body) async {
-    print('$title $body ');
     try {
-      var response = await http.post(
+      await http.post(
         'https://fcm.googleapis.com/fcm/send',
         headers: <String, String>{
           'Content-Type': 'application/json',
@@ -46,10 +44,7 @@ class PushNotification {
           },
         ),
       );
-      print(response.body);
-      var decoded = jsonDecode(response.body);
-      print(response.statusCode);
-      print("sent");
+
     } catch (error) {
       print(error.message);
     }

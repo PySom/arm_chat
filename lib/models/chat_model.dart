@@ -22,11 +22,9 @@ class ChatModel {
 
   addChat(String id, String message) {
     print('in here');
-    return messages.add({
-      'senderId': id, // John Doe
-      'message': message, // Stokes and Sons
-      'date': DateTime.now() // 42
-    }).then((value) async {
+    return messages
+        .add({'senderId': id, 'message': message, 'date': DateTime.now()}).then(
+            (value) async {
       await PushNotification().sendMessage(id, message);
     }).catchError((error) => throw ApiFailureException(error.message));
   }

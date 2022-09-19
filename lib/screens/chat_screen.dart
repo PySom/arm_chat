@@ -173,6 +173,7 @@ class ChatStream extends StatelessWidget {
 
           final messages = snapshot.data.documents;
           print(messages);
+          print(messages);
           List<ChatModel> chats = [];
           for (var message
               in messages.where((m) => m.data['message'] != null)) {

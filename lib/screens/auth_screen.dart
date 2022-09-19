@@ -91,7 +91,7 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void _showSnack(BuildContext context, String message) {
-    final scaffold = Scaffold.of(context);
+    final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
         content: Text(message ?? 'An error occurred.'),
